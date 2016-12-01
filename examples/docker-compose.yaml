@@ -1,0 +1,19 @@
+version: '2'
+services:
+  dnss:
+    image: 4km3/dnss:latest
+    ports:
+      - "53:53/udp"
+    restart: always
+    network_mode: host
+    environment:
+      https_proxy: https://${upstream_proxy}
+    command: [--enable_dns_to_https]
+  any-proxy:
+    image: 4km3/any-proxy:latest
+    command: -l ':3128' -r=1 -p "${upstream_proxy}"
+    ports:
+     - "80:80"
+     - "443:443"
+    restart: always
+    network_mode: host

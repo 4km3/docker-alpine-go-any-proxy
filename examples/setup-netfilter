@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+DEV=eth0
+PROXY_PORT=3128
+
+sudo iptables -D PREROUTING -t nat -i $DEV -p tcp --dport 80  -j REDIRECT --to-port $PROXY_PORT
+sudo iptables -D PREROUTING -t nat -i $DEV -p tcp --dport 443 -j REDIRECT --to-port $PROXY_PORT
+sudo iptables -A PREROUTING -t nat -i $DEV -p tcp --dport 80  -j REDIRECT --to-port $PROXY_PORT
+sudo iptables -A PREROUTING -t nat -i $DEV -p tcp --dport 443 -j REDIRECT --to-port $PROXY_PORT
