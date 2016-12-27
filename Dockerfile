@@ -14,8 +14,7 @@ RUN set -e;                                                                     
     mv "$SANDBOX"/version.go "$SANDBOX/$PROJECT";                                       \
     export GOPATH="$SANDBOX/go" GOBIN=/;                                                \
     go get github.com/zdannar/flogger;                                                  \
-    go install ."$SANDBOX/$PROJECT";                                                    \
-    strip /"$PROJECT";                                                                  \
+    go install -ldflags '-s' ."$SANDBOX/$PROJECT";                                      \
     rm -rf "$SANDBOX";                                                                  \
     apk del $PACKAGES
 
