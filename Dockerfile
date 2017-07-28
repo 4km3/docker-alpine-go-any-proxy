@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:3.6
 MAINTAINER pancho horrillo <pancho@pancho.name>
 
 COPY version.go /tmp/sandbox/
